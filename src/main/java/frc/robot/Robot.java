@@ -86,9 +86,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     double speed = joystick.getY();
-    speed *= Math.random() + 0.5;
-    if (speed > 1) speed = 1;
-    if (speed < -1) speed = -1;
     motor.set(speed);
   }
 
