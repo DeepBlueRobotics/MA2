@@ -19,7 +19,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  private WPI_TalonSRX motor = new CANSparkMax();
+  private WPI_TalonSRX motor = new CANSparkMax(1);
   private Joystick joystick = new Joystick(0);
 
   /**
