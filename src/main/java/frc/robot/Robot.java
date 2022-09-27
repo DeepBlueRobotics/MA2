@@ -18,6 +18,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  private CANSparkMax leftMotor = new CANSparkMax(1);
+  private Joystick joystick = new Joystick();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -82,6 +84,8 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {}
+    double x= CANSparkMax.getX(joystick);
+    leftMotor.set(x);
 
   @Override
   public void testInit() {
