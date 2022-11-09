@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 
 import org.carlmontrobotics.lib199.MotorControllerFactory;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase {
@@ -16,11 +17,31 @@ public class Drivetrain extends SubsystemBase {
   private final CANSparkMax right = MotorControllerFactory.createSparkMax(2, 30);
   
   public Drivetrain() {
-    
+    right.setInverted(true);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Left RPM", left.getEncoder().getVelocity());
+    SmartDashboard.putNumber("Right RPM", right.getEncoder().getVelocity());
+  }
+
+  public void forward(double speed) {
+    left.set(speed);
+    left.follow(right, true);
+  }
+
+  public void runLeft(double speed) {
+    left.set(speed);
+  }
+
+  public void runRight(double speed) {
+    right.set(speed * -1);
+  }
+
+  public void stop() {
+    right.set(0);
+    left.set(0);
   }
 }
