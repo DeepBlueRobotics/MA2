@@ -4,11 +4,13 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.commands.Drive;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.TeleopDrive;
+import frc.robot.subsystems.Drivetrain;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -18,14 +20,30 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Drivetrain dt = new Drivetrain();
 
-  private final Drive drive = new Drive(dt);
+  public final Joystick leftJoy = new Joystick(Constants.OI.LeftJoy.port);
+  public final Joystick rightJoy = new Joystick(Constants.OI.RightJoy.port);
+
+  private final Drivetrain dt = new Drivetrain();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    configureButtonBindings();
+    if (DriverStation.isJoystickConnected(Constants.OI.LeftJoy.port)) {
+      configureButtonBindingsLeftJoy();
+    } else {
+      System.err.println("Missing the left joystick.");
+    }
+
+    if (DriverStation.isJoystickConnected(Constants.OI.RightJoy.port)) {
+      configureButtonBindingsRightJoy();
+    } else {
+      System.err.println("Missing the right joystick.");
+    }
+
+    dt.setDefaultCommand(new TeleopDrive(dt,
+      getStickValue(Constants.OI.StickType.LEFT, Constants.OI.StickDirection.Y),
+      getStickValue(Constants.OI.StickType.RIGHT, Constants.OI.StickDirection.Y)));
   }
 
   /**
@@ -34,15 +52,28 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindingsLeftJoy() {}
+  private void configureButtonBindingsRightJoy() {}
+
+  private double getStickValue(Constants.OI.StickType stick, Constants.OI.StickDirection dir) {
+    if (stick == Constants.OI.StickType.LEFT && dir == Constants.OI.StickDirection.X)
+      return leftJoy.getX();
+    if (stick == Constants.OI.StickType.LEFT && dir == Constants.OI.StickDirection.Y)
+      return -leftJoy.getY();
+    if (stick == Constants.OI.StickType.RIGHT && dir == Constants.OI.StickDirection.X)
+      return rightJoy.getX();
+    if (stick == Constants.OI.StickType.RIGHT && dir == Constants.OI.StickDirection.Y)
+      return -rightJoy.getY();
+    return 0;
+  }
+
+  public Command getAutonomousCommand() {
+    return null;
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return drive;
-  }
 }
