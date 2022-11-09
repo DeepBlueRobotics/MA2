@@ -4,11 +4,20 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+
+import org.carlmontrobotics.lib199.MotorControllerFactory;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
-  public Drivetrain() {}
+  private final CANSparkMax left = MotorControllerFactory.createSparkMax(2, 30);
+  private final CANSparkMax right = MotorControllerFactory.createSparkMax(2, 30);
+  
+  public Drivetrain() {
+    
+  }
 
   @Override
   public void periodic() {
