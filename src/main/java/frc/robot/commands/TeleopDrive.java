@@ -35,7 +35,8 @@ public class TeleopDrive extends CommandBase {
     if (Math.abs(spdR) <= Constants.OI.JOY_THRESH) rawR = 0.0;
     else rawR = spdR;
 
-    
+    dt.runLeft(rawL);
+    dt.runRight(rawR);
   }
 
   // Called once the command ends or is interrupted.

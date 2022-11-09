@@ -15,7 +15,20 @@ package frc.robot;
 public final class Constants {
 
     public static final class OI {
+        public static enum ControlType {JOYSTICKS, GAMEPAD};
+        public static enum StickType {LEFT, RIGHT};
+        public static enum StickDirection {X, Y};
+
+        public static ControlType CONTROL_TYPE = ControlType.JOYSTICKS;
         public static final double JOY_THRESH = 0.01;
+
+        public static final class LeftJoy {
+            public static final int port = 0;
+        }
+        
+        public static final class RightJoy {
+            public static final int port = 0;
+        }
     }
 
     public static final class DriveConstants {

@@ -28,11 +28,6 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("Right RPM", right.getEncoder().getVelocity());
   }
 
-  public void forward(double speed) {
-    left.set(speed);
-    left.follow(right, true);
-  }
-
   public void runLeft(double speed) {
     left.set(speed);
   }
