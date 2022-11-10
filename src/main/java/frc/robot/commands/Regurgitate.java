@@ -9,7 +9,7 @@ import frc.robot.subsystems.IntakeFeederTreadmill;
 
 public class Regurgitate extends CommandBase {
   /** Creates a new Regurgitate. */
-  IntakeFeederTreadmill intake;
+  private final IntakeFeederTreadmill intake;
   public Regurgitate(IntakeFeederTreadmill intake) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.intake = intake;

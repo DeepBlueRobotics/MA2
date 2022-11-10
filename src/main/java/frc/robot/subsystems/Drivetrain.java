@@ -31,6 +31,14 @@ public class Drivetrain extends SubsystemBase {
     drive.arcadeDrive(spd, spdRotation);
   }
 
+  public void stop() {
+    drive.stopMotor();
+  }
+
+  public double getRotations() {
+    return left.getEncoder().getPosition();
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

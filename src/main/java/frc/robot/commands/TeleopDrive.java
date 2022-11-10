@@ -11,7 +11,7 @@ import frc.robot.subsystems.Drivetrain;
 public class TeleopDrive extends CommandBase {
   /** Creates a new TeleopDrive. */
   private static enum DriveMode {TANK, ARCADE}
-  private static DriveMode mode = DriveMode.TANK;
+  private static DriveMode mode = DriveMode.ARCADE;
 
   private final Drivetrain dt;
 

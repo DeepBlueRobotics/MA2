@@ -5,14 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeFeederTreadmill;
+import frc.robot.Constants;
+import frc.robot.subsystems.Drivetrain;
 
-public class Intake extends CommandBase {
-  /** Creates a new Intake. */
-  private final IntakeFeederTreadmill intake;
-  public Intake(IntakeFeederTreadmill intake) {
+public class Autonomous extends CommandBase {
+  /** Creates a new Autonomous. */
+  private final Drivetrain dt;
+  public Autonomous(Drivetrain dt) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.intake = intake;
+    this.dt = dt;
   }
 
   // Called when the command is initially scheduled.
@@ -22,7 +23,11 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.intake();
+    if (dt.getRotations() < Constants.DriveConstants.rotationsForAuto) {
+      dt.arcadeDrive(Constants.DriveConstants.autoSpeed, 0);
+    } else {
+      dt.stop();
+    }
   }
 
   // Called once the command ends or is interrupted.

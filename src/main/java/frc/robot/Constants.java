@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import org.carlmontrobotics.lib199.MotorErrors.TemperatureLimit;
-
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -39,8 +37,10 @@ public final class Constants {
         public static final double feederSpeed = 0.6;
         public static final double feederRegurgitateSpeed = -0.6;
         public static final double treadmillRegurgitateSpeed = -0.6;
-        public static double intakeSpeed = 0.6;
-        public static double treadmillSpeed = 0.6;
+        public static final double autoSpeed = 0.4;
+        public static final double intakeSpeed = 0.6;
+        public static final double treadmillSpeed = 0.6;
+        public static final double rotationsForAuto = 2.5;
     }
 
     public static final class MotorPorts {
