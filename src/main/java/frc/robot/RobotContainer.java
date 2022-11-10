@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.TeleopDrive;
 import frc.robot.subsystems.Drivetrain;
 
@@ -41,9 +43,7 @@ public class RobotContainer {
       System.err.println("Missing the right joystick.");
     }
 
-    dt.setDefaultCommand(new TeleopDrive(dt,
-      getStickValue(Constants.OI.StickType.LEFT, Constants.OI.StickDirection.Y),
-      getStickValue(Constants.OI.StickType.RIGHT, Constants.OI.StickDirection.Y)));
+    dt.setDefaultCommand(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getY()));
   }
 
   /**
@@ -52,20 +52,12 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindingsLeftJoy() {}
-  private void configureButtonBindingsRightJoy() {}
-
-  private double getStickValue(Constants.OI.StickType stick, Constants.OI.StickDirection dir) {
-    if (stick == Constants.OI.StickType.LEFT && dir == Constants.OI.StickDirection.X)
-      return leftJoy.getX();
-    if (stick == Constants.OI.StickType.LEFT && dir == Constants.OI.StickDirection.Y)
-      return -leftJoy.getY();
-    if (stick == Constants.OI.StickType.RIGHT && dir == Constants.OI.StickDirection.X)
-      return rightJoy.getX();
-    if (stick == Constants.OI.StickType.RIGHT && dir == Constants.OI.StickDirection.Y)
-      return -rightJoy.getY();
-    return 0;
+  private void configureButtonBindingsLeftJoy() {
+    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleArcade).whenPressed(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getX()), Constants.DriveConstants.tank = !Constants.DriveConstants.tank);
+    new Joystickbutton(leftJoy, Constants.OI.LeftJoy.toggleTank)
   }
+
+  private void configureButtonBindingsRightJoy() {}
 
   public Command getAutonomousCommand() {
     return null;

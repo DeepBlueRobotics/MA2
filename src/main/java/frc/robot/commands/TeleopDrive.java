@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.drive.Vector2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
@@ -12,11 +11,11 @@ import frc.robot.subsystems.Drivetrain;
 public class TeleopDrive extends CommandBase {
   /** Creates a new TeleopDrive. */
   private final Drivetrain dt;
-  private double spdL;
-  private double spdR;
+
+  private final double spdL;
+  private final double spdR;
 
   public TeleopDrive(Drivetrain drivetrain, double spdL, double spdR) {
-    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(dt = drivetrain);
     this.spdL = spdL;
     this.spdR = spdR;
@@ -29,14 +28,17 @@ public class TeleopDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rawL, rawR;
-    if (Math.abs(spdL) <= Constants.OI.JOY_THRESH) rawL = 0.0;
-    else rawL = spdL;
-    if (Math.abs(spdR) <= Constants.OI.JOY_THRESH) rawR = 0.0;
-    else rawR = spdR;
+    if (Constants.DriveConstants.tank == true) {
+      dt.tankDrive(spdL, spdR);
+    }
 
-    dt.runLeft(rawL);
-    dt.runRight(rawR);
+    else {
+      dt.arcadeDrive(spdL, spdR);
+    }
+  }
+
+  public void switchMode() {
+    Constants.DriveConstants.tank = !Constants.DriveConstants.tank;
   }
 
   // Called once the command ends or is interrupted.
