@@ -27,7 +27,7 @@ public final class Constants {
             public static final int port = 0;
             public static final int toggleDriveMode = 0;
             public static final int toggleArcade = 0;
-            public static final String toggleTank = null;
+            public static final int toggleTank = 0;
         }
         
         public static final class RightJoy {

@@ -54,9 +54,8 @@ public class RobotContainer {
    */
   private void configureButtonBindingsLeftJoy() {
     new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleArcade).whenPressed(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getX()), Constants.DriveConstants.tank = !Constants.DriveConstants.tank);
-    new Joystickbutton(leftJoy, Constants.OI.LeftJoy.toggleTank)
+    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleTank).whenPressed(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getY()), Constants.DriveConstants.tank = !Constants.DriveConstants.tank);
   }
-
   private void configureButtonBindingsRightJoy() {}
 
   public Command getAutonomousCommand() {
