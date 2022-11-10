@@ -15,8 +15,8 @@ import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
-  private final CANSparkMax left = MotorControllerFactory.createSparkMax(Constants.DrivePorts.lSparkMax, Constants.DriveConstants.motorTempLimit);
-  private final CANSparkMax right = MotorControllerFactory.createSparkMax(Constants.DrivePorts.rSparkMax, Constants.DriveConstants.motorTempLimit);
+  private final CANSparkMax left = MotorControllerFactory.createSparkMax(Constants.MotorPorts.leftDriveSparkMax, Constants.DriveConstants.motorTempLimit);
+  private final CANSparkMax right = MotorControllerFactory.createSparkMax(Constants.MotorPorts.rightDriveSparkMax, Constants.DriveConstants.motorTempLimit);
   private final DifferentialDrive drive;
   public Drivetrain() {
     right.setInverted(true);

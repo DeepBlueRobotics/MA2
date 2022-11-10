@@ -34,11 +34,15 @@ public final class Constants {
     }
 
     public static final class DriveConstants {
-        public static final TemperatureLimit motorTempLimit = null;
+        public static final int motorTempLimit = 30;
     }
 
-    public static final class DrivePorts {
-        public static final int lSparkMax = 1;
-        public static final int rSparkMax = 0;
+    public static final class MotorPorts {
+        public static final int leftDriveSparkMax = 0;
+        public static final int rightDriveSparkMax = 0;
+        public static final int leftIntakeSparkMax = 0;
+        public static final int rightIntakeSparkMax = 0;
+        public static final int feederSparkMax = 0;
+        public static final int treadmill = 0;
     }
 }
