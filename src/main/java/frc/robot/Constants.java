@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import org.carlmontrobotics.lib199.MotorErrors.TemperatureLimit;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -20,10 +22,12 @@ public final class Constants {
         public static enum StickDirection {X, Y};
 
         public static ControlType CONTROL_TYPE = ControlType.JOYSTICKS;
-        public static final double JOY_THRESH = 0.01;
 
         public static final class LeftJoy {
             public static final int port = 0;
+            public static final int toggleDriveMode = 0;
+            public static final int toggleArcade = 0;
+            public static final String toggleTank = null;
         }
         
         public static final class RightJoy {
@@ -32,8 +36,8 @@ public final class Constants {
     }
 
     public static final class DriveConstants {
-        public static final double maxSpd = 0.8;
-        public static final int motorTempLimit = 30;
+        public static final TemperatureLimit motorTempLimit = null;
+        public static boolean tank = true;
     }
 
     public static final class DrivePorts {
