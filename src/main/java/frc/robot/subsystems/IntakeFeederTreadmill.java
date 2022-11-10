@@ -30,14 +30,15 @@ public class IntakeFeederTreadmill extends SubsystemBase {
   }
 
   public void intake() {
-    rightIntakeMotor.set(1);
-    feeder.set(1);
-    treadmill.set(1);
+    rightIntakeMotor.set(Constants.DriveConstants.intakeSpeed);
+    feeder.set(Constants.DriveConstants.feederSpeed);
+    treadmill.set(Constants.DriveConstants.treadmillSpeed);
   }
 
   public void regurgitate() {
     rightIntakeMotor.set(Constants.DriveConstants.intakeRegurgitateSpeed);
-    
+    feeder.set(Constants.DriveConstants.feederRegurgitateSpeed);
+    treadmill.set(Constants.DriveConstants.treadmillRegurgitateSpeed);
   }
 
   @Override

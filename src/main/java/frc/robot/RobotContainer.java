@@ -11,8 +11,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.commands.Intake;
+import frc.robot.commands.Regurgitate;
 import frc.robot.commands.TeleopDrive;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.IntakeFeederTreadmill;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,6 +31,7 @@ public class RobotContainer {
   public final Joystick rightJoy = new Joystick(Constants.OI.RightJoy.port);
 
   private final Drivetrain dt = new Drivetrain();
+  private final IntakeFeederTreadmill intake = new IntakeFeederTreadmill();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -45,8 +50,11 @@ public class RobotContainer {
    */
   private void configureButtonBindingsLeftJoy() {
     new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleMode).whenPressed(new InstantCommand(() -> TeleopDrive.switchMode()));
+    new Trigger().toggleWhenActive(new Regurgitate(intake));
   }
-  private void configureButtonBindingsRightJoy() {}
+  private void configureButtonBindingsRightJoy() {
+    new Trigger().toggleWhenActive(new Intake(intake));
+  }
 
   public Command getAutonomousCommand() {
     return null;
