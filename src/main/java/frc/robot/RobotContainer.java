@@ -31,17 +31,8 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
-    if (DriverStation.isJoystickConnected(Constants.OI.LeftJoy.port)) {
-      configureButtonBindingsLeftJoy();
-    } else {
-      System.err.println("Missing the left joystick.");
-    }
-
-    if (DriverStation.isJoystickConnected(Constants.OI.RightJoy.port)) {
-      configureButtonBindingsRightJoy();
-    } else {
-      System.err.println("Missing the right joystick.");
-    }
+    configureButtonBindingsLeftJoy();
+    configureButtonBindingsRightJoy();
 
     dt.setDefaultCommand(new TeleopDrive(dt, leftJoy, rightJoy));
   }

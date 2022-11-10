@@ -35,6 +35,7 @@ public final class Constants {
 
     public static final class DriveConstants {
         public static final int motorTempLimit = 30;
+        public static final double intakeRegurgitateSpeed = 0;
     }
 
     public static final class MotorPorts {
