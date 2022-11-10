@@ -4,8 +4,6 @@
 
 package frc.robot.subsystems;
 
-import static org.mockito.ArgumentMatchers.contains;
-
 import com.revrobotics.CANSparkMax;
 
 import org.carlmontrobotics.lib199.MotorControllerFactory;

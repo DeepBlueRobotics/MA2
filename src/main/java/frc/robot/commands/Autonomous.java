@@ -11,9 +11,11 @@ import frc.robot.subsystems.Drivetrain;
 public class Autonomous extends CommandBase {
   /** Creates a new Autonomous. */
   private final Drivetrain dt;
-  public Autonomous(Drivetrain dt) {
+  private final double rotationsNeeded;
+  public Autonomous(Drivetrain dt, double distanceInches) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.dt = dt;
+    rotationsNeeded = distanceInches / (Constants.DriveConstants.drivetrainRatio * (Constants.DriveConstants.wheelDiameter * Math.PI));
   }
 
   // Called when the command is initially scheduled.
@@ -23,7 +25,8 @@ public class Autonomous extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (dt.getRotations() < Constants.DriveConstants.rotationsForAuto) {
+
+    if (dt.getRotations() < rotationsNeeded) {
       dt.arcadeDrive(Constants.DriveConstants.autoSpeed, 0);
     } else {
       dt.stop();

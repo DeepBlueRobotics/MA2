@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -58,7 +57,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new Autonomous(dt);
+    return new Autonomous(dt, 55);
   }
 
   /**
