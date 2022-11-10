@@ -25,9 +25,7 @@ public final class Constants {
 
         public static final class LeftJoy {
             public static final int port = 0;
-            public static final int toggleDriveMode = 0;
-            public static final int toggleArcade = 0;
-            public static final int toggleTank = 0;
+            public static final int toggleMode = 0;
         }
         
         public static final class RightJoy {
@@ -37,7 +35,6 @@ public final class Constants {
 
     public static final class DriveConstants {
         public static final TemperatureLimit motorTempLimit = null;
-        public static boolean tank = true;
     }
 
     public static final class DrivePorts {

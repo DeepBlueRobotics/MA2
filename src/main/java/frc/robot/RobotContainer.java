@@ -43,7 +43,7 @@ public class RobotContainer {
       System.err.println("Missing the right joystick.");
     }
 
-    dt.setDefaultCommand(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getY()));
+    dt.setDefaultCommand(new TeleopDrive(dt, leftJoy, rightJoy));
   }
 
   /**
@@ -53,8 +53,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindingsLeftJoy() {
-    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleArcade).whenPressed(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getX()), Constants.DriveConstants.tank = false);
-    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleTank).whenPressed(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getY()), Constants.DriveConstants.tank = true);
+    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleMode).whenPressed(new InstantCommand(() -> TeleopDrive.switchMode()));
   }
   private void configureButtonBindingsRightJoy() {}
 

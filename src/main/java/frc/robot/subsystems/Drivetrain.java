@@ -36,6 +36,5 @@ public class Drivetrain extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Left RPM", left.getEncoder().getVelocity());
     SmartDashboard.putNumber("Right RPM", right.getEncoder().getVelocity());
-
   }
 }
