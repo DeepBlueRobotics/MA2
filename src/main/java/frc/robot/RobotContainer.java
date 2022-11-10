@@ -53,8 +53,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindingsLeftJoy() {
-    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleArcade).whenPressed(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getX()), Constants.DriveConstants.tank = !Constants.DriveConstants.tank);
-    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleTank).whenPressed(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getY()), Constants.DriveConstants.tank = !Constants.DriveConstants.tank);
+    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleArcade).whenPressed(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getX()), Constants.DriveConstants.tank = false);
+    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleTank).whenPressed(new TeleopDrive(dt, leftJoy.getY(), rightJoy.getY()), Constants.DriveConstants.tank = true);
   }
   private void configureButtonBindingsRightJoy() {}
 
