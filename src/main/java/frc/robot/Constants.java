@@ -28,11 +28,12 @@ public final class Constants {
         
         public static final class RightJoy {
             public static final int port = 0;
+            public static final int regurgitate = 0;
         }
     }
 
     public static final class DriveConstants {
-        public static final double drivetrainRatio = 13/70;
+        public static final double drivetrainRatio = 12/72;
         public static final double wheelDiameter = 4;
 
         public static final int motorTempLimit = 30;
