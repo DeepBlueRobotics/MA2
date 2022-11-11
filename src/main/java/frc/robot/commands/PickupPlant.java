@@ -8,21 +8,22 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.IntakeFeederTreadmill;
 
-public class TeleopDrive extends CommandBase {
-  /** Creates a new TeleopDrive. */
-
+public class PickupPlant extends CommandBase {
+  /** Creates a new DriveSlow. */
   private final Drivetrain dt;
-
   private final Joystick leftJoy;
   private final Joystick rightJoy;
+  private final IntakeFeederTreadmill intake;
 
-  public TeleopDrive(Drivetrain drivetrain, Joystick left, Joystick right) {
-    addRequirements(dt = drivetrain);
-    leftJoy = left;
-    rightJoy = right;
+  public PickupPlant(IntakeFeederTreadmill intake, Drivetrain dt, Joystick leftJoy, Joystick rightJoy) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    this.dt = dt;
+    this.leftJoy = leftJoy;
+    this.rightJoy = rightJoy;
+    this.intake = intake;
   }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
@@ -31,18 +32,12 @@ public class TeleopDrive extends CommandBase {
   @Override
   public void execute() {
     if (Constants.DriveConstants.mode == Constants.DriveConstants.DriveMode.TANK) {
-      dt.tankDrive(leftJoy.getY(), rightJoy.getY());
+      dt.tankDrive(leftJoy.getX() * Constants.DriveConstants.slowDriveMultiplier, rightJoy.getX() * Constants.DriveConstants.slowDriveMultiplier);
     } else {
-      dt.arcadeDrive(leftJoy.getY(), rightJoy.getX());
+      dt.arcadeDrive(leftJoy.getX() * Constants.DriveConstants.slowDriveMultiplier, rightJoy.getX() * Constants.DriveConstants.slowDriveMultiplier);
     }
-  }
 
-  public static void switchMode() {
-    if (Constants.DriveConstants.mode == Constants.DriveConstants.DriveMode.TANK) {
-      Constants.DriveConstants.mode = Constants.DriveConstants.DriveMode.ARCADE;
-    } else {
-      Constants.DriveConstants.mode = Constants.DriveConstants.DriveMode.TANK;
-    }
+    intake.plantIntake(Constants.DriveConstants.plantIntakeSpeed);
   }
 
   // Called once the command ends or is interrupted.

@@ -24,6 +24,7 @@ public final class Constants {
         public static final class LeftJoy {
             public static final int port = 0;
             public static final int toggleMode = 0;
+            public static final int plantIntake = 0;
         }
         
         public static final class RightJoy {
@@ -33,6 +34,9 @@ public final class Constants {
     }
 
     public static final class DriveConstants {
+        public static enum DriveMode {TANK, ARCADE};
+        public static DriveMode mode = DriveMode.ARCADE;
+
         public static final double drivetrainRatio = 12/72;
         public static final double wheelDiameter = 4;
 
@@ -45,6 +49,10 @@ public final class Constants {
         public static final double autoSpeed = 0.4;
         public static final double intakeSpeed = 0.6;
         public static final double treadmillSpeed = 0.6;
+
+        public static final double slowDriveMultiplier = 0.3;
+
+        public static final double plantIntakeSpeed = 0.1;
     }
 
     public static final class MotorPorts {

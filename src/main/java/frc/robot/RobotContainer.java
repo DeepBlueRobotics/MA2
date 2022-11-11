@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autonomous;
+import frc.robot.commands.PickupPlant;
 import frc.robot.commands.Intake;
 import frc.robot.commands.Regurgitate;
 import frc.robot.commands.TeleopDrive;
@@ -52,11 +53,11 @@ public class RobotContainer {
    */
   private void configureButtonBindingsLeftJoy() {
     new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleMode).whenPressed(new InstantCommand(() -> TeleopDrive.switchMode()));
+    new JoystickButton(leftJoy, Constants.OI.LeftJoy.plantIntake).whenPressed(new PickupPlant(intake, dt, leftJoy, rightJoy));
   }
   private void configureButtonBindingsRightJoy() {
     new JoystickButton(rightJoy, Constants.OI.RightJoy.regurgitate).whileHeld(new Regurgitate(intake));
   }
-
   public Command getAutonomousCommand() {
     return new Autonomous(dt, 55);
   }
