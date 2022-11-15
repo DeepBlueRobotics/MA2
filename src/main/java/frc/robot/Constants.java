@@ -30,7 +30,7 @@ public final class Constants {
         public static final class RightJoy {
             public static final int port = 0;
             public static final int regurgitate = 0;
-            public static final int intakeMode = 0;
+            public static final int toggleIntake = 0;
         }
     }
 

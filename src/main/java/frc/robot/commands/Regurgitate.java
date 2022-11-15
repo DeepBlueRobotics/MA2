@@ -12,7 +12,7 @@ public class Regurgitate extends CommandBase {
   private final IntakeFeederTreadmill intake;
   public Regurgitate(IntakeFeederTreadmill intake) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.intake = intake;
+    addRequirements(this.intake = intake);
   }
 
   // Called when the command is initially scheduled.

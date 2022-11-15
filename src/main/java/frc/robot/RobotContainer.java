@@ -42,7 +42,9 @@ public class RobotContainer {
     configureButtonBindingsRightJoy();
 
     dt.setDefaultCommand(new TeleopDrive(dt, leftJoy, rightJoy));
+
     intake.setDefaultCommand(new Intake(intake));
+    // CommandScheduler.getInstance().schedule(new Intake(intake));
 
   }
 
@@ -57,7 +59,7 @@ public class RobotContainer {
     new JoystickButton(leftJoy, Constants.OI.LeftJoy.plantIntake).whileHeld(new PickupPlant(intake, dt, leftJoy, rightJoy));
   }
   private void configureButtonBindingsRightJoy() {
-    new JoystickButton(rightJoy, Constants.OI.RightJoy.intakeMode).whenPressed(new InstantCommand(() -> Intake.onOff()));
+    new JoystickButton(rightJoy, Constants.OI.RightJoy.toggleIntake).whenPressed(new InstantCommand(() -> Intake.onOff()));
     new JoystickButton(rightJoy, Constants.OI.RightJoy.regurgitate).whileHeld(new Regurgitate(intake));
   }
   public Command getAutonomousCommand() {
