@@ -30,6 +30,7 @@ public final class Constants {
         public static final class RightJoy {
             public static final int port = 0;
             public static final int regurgitate = 0;
+            public static final int intakeMode = 0;
         }
     }
 
@@ -53,6 +54,7 @@ public final class Constants {
         public static final double slowDriveMultiplier = 0.3;
 
         public static final double plantIntakeSpeed = 0.1;
+        public static double intakeToggle = 0; // I'm putting this here even though it isn't final. Tell me if it should be somewhere else.
     }
 
     public static final class MotorPorts {

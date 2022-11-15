@@ -6,13 +6,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeFeederTreadmill;
+import frc.robot.Constants;
 
 public class Intake extends CommandBase {
   /** Creates a new Intake. */
   private final IntakeFeederTreadmill intake;
   public Intake(IntakeFeederTreadmill intake) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.intake = intake;
+    addRequirements(this.intake = intake);
   }
 
   // Called when the command is initially scheduled.
@@ -22,7 +23,19 @@ public class Intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.intake();
+    if (Constants.DriveConstants.intakeToggle == 0) {
+      intake.intake();
+    } else {
+      intake.intakeOff();
+    }
+  }
+
+  public static void onOff() {
+    if (Constants.DriveConstants.intakeToggle == 0) {
+      Constants.DriveConstants.intakeToggle = 1;
+    } else {
+      Constants.DriveConstants.intakeToggle = 0;
+    }
   }
 
   // Called once the command ends or is interrupted.
