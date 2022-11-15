@@ -33,6 +33,12 @@ public class IntakeFeederTreadmill extends SubsystemBase {
     treadmill.set(Constants.DriveConstants.treadmillSpeed);
   }
 
+  public void intakeOff() {
+    rightIntakeMotor.set(0);
+    feeder.set(0);
+    treadmill.set(0);
+  }
+
   public void plantIntake(double speed) {
     rightIntakeMotor.set(speed);
     feeder.set(0);

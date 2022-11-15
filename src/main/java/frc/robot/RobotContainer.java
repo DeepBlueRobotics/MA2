@@ -18,6 +18,7 @@ import frc.robot.commands.Regurgitate;
 import frc.robot.commands.TeleopDrive;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.IntakeFeederTreadmill;
+import frc.robot.Constants;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -30,6 +31,7 @@ public class RobotContainer {
 
   public final Joystick leftJoy = new Joystick(Constants.OI.LeftJoy.port);
   public final Joystick rightJoy = new Joystick(Constants.OI.RightJoy.port);
+  public final Joystick controller = new Joystick(Constants.Controller.port);
 
   private final Drivetrain dt = new Drivetrain();
   private final IntakeFeederTreadmill intake = new IntakeFeederTreadmill();
@@ -42,6 +44,7 @@ public class RobotContainer {
 
     dt.setDefaultCommand(new TeleopDrive(dt, leftJoy, rightJoy));
     intake.setDefaultCommand(new Intake(intake));
+    // CommandScheduler.getInstance().schedule(new Intake(intake));
 
   }
 
@@ -57,51 +60,16 @@ public class RobotContainer {
   }
   private void configureButtonBindingsRightJoy() {
     new JoystickButton(rightJoy, Constants.OI.RightJoy.regurgitate).whileHeld(new Regurgitate(intake));
+    new JoystickButton(rightJoy, Constants.OI.RightJoy.intakeToggle).whenPressed(new InstantCommand(() -> Intake.onOff()));
   }
-  public static final class Controller {
-    public static final int port = 2;
 
-    public static Joystick controller = new Joystick(port);
+  private void configureButtonBindingsController() { // Idk what the problem is here.
+    new JoystickButton(controller, Constants.Controller.toggleMode).whenPressed(new InstantCommand(() -> TeleopDrive.switchMode()));
+    new JoystickButton(controller, Constants.Controller.plantIntake).whenPressed(new PickupPlant(intake, dt, leftJoy, rightJoy));
+    new JoystickButton(controller, Constants.Controller.regurgitate).whileHeld(new Regurgitate(intake));
+    new JoystickButton(controller, Constants.Controller.intakeToggle).whenPressed(new InstantCommand(() -> Intake.onOff()));
+  }
 
-    public static int X;
-    public static int A;
-    public static int B;
-    public static int Y;
-    public static int LB;
-    public static int RB;
-    public static int LT;
-    public static int RT;
-    public static int BACK;
-    public static int START;
-
-    static {
-            // Buttons and triggers for xbox controller
-            X = 3;
-            A = 1;
-            B = 2;
-            Y = 4;
-            LB = 5;
-            RB = 6;
-            LT = 7;
-            RT = 8;
-            BACK = 9;
-            START = 10;
-        }
-          public static final int toggleMode = Y; // TODO: set correct port
-          public static final int runIntakeBackwardPort = A; // TODO: set correct port
-          public static final int regurgitatePort = B;
-          public static final int dumbModeToggle = START;
-          public static final int toggleIntakePort = X;
-          public static final int extendClimberPort = RB;
-          public static final int retractClimberPort = LB;
-      }
-      private void configureButtonBindingsController() {
-        new JoystickButton(controller, Constants.OI.Controller.toggleMode)whenPressed(new InstantCommand(() -> TeleopDrive.switchMode()));
-        new JoystickButton(controller, Constants.OI.Controller.plantIntake).whenPressed(new PickupPlant(intake, dt, leftJoy, rightJoy));
-        new JoystickButton(controller, Constants.OI.Controller.regurgitate).whileHeld(new Regurgitate(intake));
-        new JoystickButton(controller, Constants.OI.Controller.).whenPressed(new InstantCommand(intakeFeeder::toggleDumbMode, intakeFeeder));
-        new JoystickButton(controller, Constants.OI.Controller.).whenPressed(new InstantCommand(intakeFeeder::toggleIntake, intakeFeeder));
-      }
   public Command getAutonomousCommand() {
     return new Autonomous(dt, 55);
   }
