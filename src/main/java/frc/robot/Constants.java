@@ -31,7 +31,6 @@ public final class Constants {
             public static final int port = 0;
             public static final int regurgitate = 0;
         }
-    }
 
     public static final class DriveConstants {
         public static enum DriveMode {TANK, ARCADE};
