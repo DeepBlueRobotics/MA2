@@ -17,7 +17,7 @@ import frc.robot.commands.Intake;
 import frc.robot.commands.Regurgitate;
 import frc.robot.commands.TeleopDrive;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.IntakeFeederTreadmill;
+import frc.robot.subsystems.IntakeFeeder;
 import frc.robot.Constants;
 
 /**
@@ -34,7 +34,7 @@ public class RobotContainer {
   public final Joystick controller = new Joystick(Constants.Controller.port);
 
   private final Drivetrain dt = new Drivetrain();
-  private final IntakeFeederTreadmill intake = new IntakeFeederTreadmill();
+  private final IntakeFeeder intake = new IntakeFeeder();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -60,14 +60,14 @@ public class RobotContainer {
   }
   private void configureButtonBindingsRightJoy() {
     new JoystickButton(rightJoy, Constants.OI.RightJoy.regurgitate).whileHeld(new Regurgitate(intake));
-    new JoystickButton(rightJoy, Constants.OI.RightJoy.intakeToggle).whenPressed(new InstantCommand(() -> Intake.onOff()));
+    new JoystickButton(rightJoy, Constants.OI.RightJoy.intakeToggle).whenPressed(new InstantCommand(intake::onOff));
   }
 
   private void configureButtonBindingsController() { // Idk what the problem is here.
     new JoystickButton(controller, Constants.Controller.toggleMode).whenPressed(new InstantCommand(() -> TeleopDrive.switchMode()));
     new JoystickButton(controller, Constants.Controller.plantIntake).whenPressed(new PickupPlant(intake, dt, leftJoy, rightJoy));
     new JoystickButton(controller, Constants.Controller.regurgitate).whileHeld(new Regurgitate(intake));
-    new JoystickButton(controller, Constants.Controller.intakeToggle).whenPressed(new InstantCommand(() -> Intake.onOff()));
+    // new JoystickButton(controller, Constants.Controller.intakeToggle).whenPressed(new InstantCommand(() -> Intake.onOff()));
   }
 
   public Command getAutonomousCommand() {

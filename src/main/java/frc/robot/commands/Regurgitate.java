@@ -5,12 +5,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeFeederTreadmill;
+import frc.robot.subsystems.IntakeFeeder;
 
 public class Regurgitate extends CommandBase {
   /** Creates a new Regurgitate. */
-  private final IntakeFeederTreadmill intake;
-  public Regurgitate(IntakeFeederTreadmill intake) {
+  private final IntakeFeeder intake;
+  public Regurgitate(IntakeFeeder intake) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.intake = intake;
   }

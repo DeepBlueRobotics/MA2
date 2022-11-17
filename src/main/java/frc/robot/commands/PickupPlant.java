@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.IntakeFeederTreadmill;
+import frc.robot.subsystems.IntakeFeeder;
 
 public class PickupPlant extends CommandBase {
   /** Creates a new DriveSlow. */
   private final Drivetrain dt;
   private final Joystick leftJoy;
   private final Joystick rightJoy;
-  private final IntakeFeederTreadmill intake;
+  private final IntakeFeeder intake;
 
-  public PickupPlant(IntakeFeederTreadmill intake, Drivetrain dt, Joystick leftJoy, Joystick rightJoy) {
+  public PickupPlant(IntakeFeeder intake, Drivetrain dt, Joystick leftJoy, Joystick rightJoy) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.dt = dt;
     this.leftJoy = leftJoy;
