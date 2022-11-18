@@ -18,11 +18,15 @@ public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
   private final CANSparkMax left = MotorControllerFactory.createSparkMax(Constants.MotorPorts.leftDriveSparkMax, Constants.DriveConstants.motorTempLimit);
   private final CANSparkMax right = MotorControllerFactory.createSparkMax(Constants.MotorPorts.rightDriveSparkMax, Constants.DriveConstants.motorTempLimit);
+  
   private final DifferentialDrive drive;
+  
   private final Joystick leftJoy;
   private final Joystick rightJoy;
+  
   private final double plantModifier = 0.3;
   private final double autoSpeed = 0.5;
+  
   private boolean isTank = true;
 
   public Drivetrain(Joystick leftJoy, Joystick rightJoy) {
