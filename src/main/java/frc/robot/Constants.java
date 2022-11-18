@@ -34,21 +34,13 @@ public final class Constants {
         }
     }
     public static final class DriveConstants {
-        public static enum DriveMode {TANK, ARCADE};
-        public static DriveMode mode = DriveMode.ARCADE;
 
         public static final double drivetrainRatio = 12/72;
         public static final double wheelDiameter = 4;
 
         public static final int motorTempLimit = 30;
         
-        public static final double intakeRegurgitateSpeed = -0.6;
-        public static final double feederSpeed = 0.6;
-        public static final double feederRegurgitateSpeed = -0.6;
-        public static final double treadmillRegurgitateSpeed = -0.6;
         public static final double autoSpeed = 0.4;
-        public static final double intakeSpeed = 0.6;
-        public static final double treadmillSpeed = 0.6;
 
         public static final double slowDriveMultiplier = 0.3;
 

@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autonomous;
 import frc.robot.commands.PickupPlant;
 import frc.robot.commands.Intake;
@@ -18,7 +17,6 @@ import frc.robot.commands.Regurgitate;
 import frc.robot.commands.TeleopDrive;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.IntakeFeeder;
-import frc.robot.Constants;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -33,7 +31,7 @@ public class RobotContainer {
   public final Joystick rightJoy = new Joystick(Constants.OI.RightJoy.port);
   public final Joystick controller = new Joystick(Constants.Controller.port);
 
-  private final Drivetrain dt = new Drivetrain();
+  private final Drivetrain dt = new Drivetrain(leftJoy, rightJoy);
   private final IntakeFeeder intake = new IntakeFeeder();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -41,6 +39,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindingsLeftJoy();
     configureButtonBindingsRightJoy();
+    configureButtonBindingsController();
 
     dt.setDefaultCommand(new TeleopDrive(dt, leftJoy, rightJoy));
     intake.setDefaultCommand(new Intake(intake));
@@ -55,8 +54,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindingsLeftJoy() {
-    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleMode).whenPressed(new InstantCommand(() -> TeleopDrive.switchMode()));
-    new JoystickButton(leftJoy, Constants.OI.LeftJoy.plantIntake).whenPressed(new PickupPlant(intake, dt, leftJoy, rightJoy));
+    new JoystickButton(leftJoy, Constants.OI.LeftJoy.toggleMode).whenPressed(new InstantCommand(dt::switchMode));
+    new JoystickButton(leftJoy, Constants.OI.LeftJoy.plantIntake).whileHeld(new PickupPlant(intake, dt));
   }
   private void configureButtonBindingsRightJoy() {
     new JoystickButton(rightJoy, Constants.OI.RightJoy.regurgitate).whileHeld(new Regurgitate(intake));
@@ -64,10 +63,10 @@ public class RobotContainer {
   }
 
   private void configureButtonBindingsController() { // Idk what the problem is here.
-    new JoystickButton(controller, Constants.Controller.toggleMode).whenPressed(new InstantCommand(() -> TeleopDrive.switchMode()));
-    new JoystickButton(controller, Constants.Controller.plantIntake).whenPressed(new PickupPlant(intake, dt, leftJoy, rightJoy));
+    new JoystickButton(controller, Constants.Controller.toggleMode).whenPressed(new InstantCommand(dt::switchMode));
+    new JoystickButton(controller, Constants.Controller.plantIntake).whileHeld(new PickupPlant(intake, dt));
     new JoystickButton(controller, Constants.Controller.regurgitate).whileHeld(new Regurgitate(intake));
-    // new JoystickButton(controller, Constants.Controller.intakeToggle).whenPressed(new InstantCommand(() -> Intake.onOff()));
+    new JoystickButton(controller, Constants.Controller.intakeToggle).whenPressed(intake::onOff);
   }
 
   public Command getAutonomousCommand() {

@@ -14,13 +14,8 @@ public class TeleopDrive extends CommandBase {
 
   private final Drivetrain dt;
 
-  private final Joystick leftJoy;
-  private final Joystick rightJoy;
-
   public TeleopDrive(Drivetrain drivetrain, Joystick left, Joystick right) {
     addRequirements(dt = drivetrain);
-    leftJoy = left;
-    rightJoy = right;
   }
 
   // Called when the command is initially scheduled.
@@ -30,19 +25,7 @@ public class TeleopDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Constants.DriveConstants.mode == Constants.DriveConstants.DriveMode.TANK) {
-      dt.tankDrive(leftJoy.getY(), rightJoy.getY());
-    } else {
-      dt.arcadeDrive(leftJoy.getY(), rightJoy.getX());
-    }
-  }
-
-  public static void switchMode() {
-    if (Constants.DriveConstants.mode == Constants.DriveConstants.DriveMode.TANK) {
-      Constants.DriveConstants.mode = Constants.DriveConstants.DriveMode.ARCADE;
-    } else {
-      Constants.DriveConstants.mode = Constants.DriveConstants.DriveMode.TANK;
-    }
+    dt.drive();
   }
 
   // Called once the command ends or is interrupted.

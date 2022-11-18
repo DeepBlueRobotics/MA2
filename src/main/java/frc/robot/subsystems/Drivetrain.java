@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 
 import org.carlmontrobotics.lib199.MotorControllerFactory;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,17 +19,45 @@ public class Drivetrain extends SubsystemBase {
   private final CANSparkMax left = MotorControllerFactory.createSparkMax(Constants.MotorPorts.leftDriveSparkMax, Constants.DriveConstants.motorTempLimit);
   private final CANSparkMax right = MotorControllerFactory.createSparkMax(Constants.MotorPorts.rightDriveSparkMax, Constants.DriveConstants.motorTempLimit);
   private final DifferentialDrive drive;
-  public Drivetrain() {
+  private final Joystick leftJoy;
+  private final Joystick rightJoy;
+  private final double plantModifier = 0.3;
+  private final double autoSpeed = 0.5;
+  private boolean isTank = true;
+
+  public Drivetrain(Joystick leftJoy, Joystick rightJoy) {
     right.setInverted(true);
     drive = new DifferentialDrive(left, right);
+    this.leftJoy = leftJoy;
+    this.rightJoy = rightJoy;
   }
 
-  public void tankDrive(double spdL, double spdR) {
-    drive.tankDrive(spdL, spdR);
+  public void drive() {
+    if (isTank == true) {
+      drive.tankDrive(leftJoy.getY(), rightJoy.getY());
+    } else {
+      drive.arcadeDrive(leftJoy.getY(), rightJoy.getX());
+    }
   }
 
-  public void arcadeDrive(double spd, double spdRotation) {
-    drive.arcadeDrive(spd, spdRotation);
+  public void autoDrive() {
+    drive.tankDrive(autoSpeed, autoSpeed);
+  }
+
+public void plantDrive() {
+  if (isTank == true) {
+    drive.tankDrive(leftJoy.getY() * plantModifier, rightJoy.getY() * plantModifier);
+  } else {
+    drive.arcadeDrive(leftJoy.getY() * plantModifier, rightJoy.getX() * plantModifier);
+  }
+}
+
+  public void switchMode() {
+    if (isTank == true) {
+      isTank = false;
+    } else {
+      isTank = true;
+    }
   }
 
   public void stop() {
