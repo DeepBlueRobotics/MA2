@@ -17,6 +17,7 @@ public class PickupPlant extends CommandBase {
 
   public PickupPlant(IntakeFeeder intake, Drivetrain dt) {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(dt, intake);
     this.dt = dt;
     this.intake = intake;
   }

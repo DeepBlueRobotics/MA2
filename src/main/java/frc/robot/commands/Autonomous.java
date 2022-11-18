@@ -14,7 +14,7 @@ public class Autonomous extends CommandBase {
   private final double rotationsNeeded;
   public Autonomous(Drivetrain dt, double distanceInches) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.dt = dt;
+    addRequirements(this.dt = dt);
     rotationsNeeded = distanceInches / (Constants.DriveConstants.drivetrainRatio * (Constants.DriveConstants.wheelDiameter * Math.PI));
   }
 
@@ -28,18 +28,21 @@ public class Autonomous extends CommandBase {
 
     if (dt.getRotations() < rotationsNeeded) {
       dt.autoDrive();
-    } else {
+    } /*else {
       dt.stop();
-    }
+    }*/
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    // dt.stop(); // maybe 
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return dt.getRotations() >= rotationsNeeded;
+
   }
 }

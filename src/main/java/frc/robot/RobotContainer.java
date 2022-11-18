@@ -58,14 +58,14 @@ public class RobotContainer {
     new JoystickButton(leftJoy, Constants.OI.LeftJoy.plantIntake).whileHeld(new PickupPlant(intake, dt));
   }
   private void configureButtonBindingsRightJoy() {
-    new JoystickButton(rightJoy, Constants.OI.RightJoy.regurgitate).whileHeld(new Regurgitate(intake));
+    new JoystickButton(rightJoy, Constants.OI.RightJoy.regurgitate).whileHeld(new InstantCommand(intake::regurgitate));
     new JoystickButton(rightJoy, Constants.OI.RightJoy.intakeToggle).whenPressed(new InstantCommand(intake::onOff));
   }
 
   private void configureButtonBindingsController() { // Idk what the problem is here.
     new JoystickButton(controller, Constants.Controller.toggleMode).whenPressed(new InstantCommand(dt::switchMode));
     new JoystickButton(controller, Constants.Controller.plantIntake).whileHeld(new PickupPlant(intake, dt));
-    new JoystickButton(controller, Constants.Controller.regurgitate).whileHeld(new Regurgitate(intake));
+    new JoystickButton(controller, Constants.Controller.regurgitate).whileHeld(new InstantCommand(intake::regurgitate));
     new JoystickButton(controller, Constants.Controller.intakeToggle).whenPressed(intake::onOff);
   }
 
