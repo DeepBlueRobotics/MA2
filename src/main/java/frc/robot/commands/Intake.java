@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeFeeder;
-import frc.robot.Constants;
 
 public class Intake extends CommandBase {
   /** Creates a new Intake. */

@@ -27,7 +27,7 @@ public class Autonomous extends CommandBase {
   public void execute() {
 
     if (dt.getRotations() < rotationsNeeded) {
-      dt.arcadeDrive(Constants.DriveConstants.autoSpeed, 0);
+      dt.autoDrive();
     } /*else {
       dt.stop();
     }*/

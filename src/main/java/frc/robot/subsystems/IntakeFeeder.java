@@ -18,9 +18,18 @@ public class IntakeFeeder extends SubsystemBase {
   private final CANSparkMax rightIntakeMotor = MotorControllerFactory.createSparkMax(Constants.MotorPorts.rightIntakeSparkMax, Constants.DriveConstants.motorTempLimit);
   private final CANSparkMax feeder = MotorControllerFactory.createSparkMax(Constants.MotorPorts.feederSparkMax, Constants.DriveConstants.motorTempLimit);
   private final CANSparkMax treadmill = MotorControllerFactory.createSparkMax(Constants.MotorPorts.treadmill, Constants.DriveConstants.motorTempLimit);
-  public static boolean intakeToggle = true;
   
+  public final double intakeSpeed = 0.8;
+  public final double feederSpeed = 0.6;
+  public final double treadmillSpeed = 0.3;
 
+  public final double intakeRegSpeed = -0.8;
+  public final double feederRegSpeed = -0.6;
+  public final double treadmillRegSpeed = -0.4;
+
+  public final double plantSpeed = 0.2;
+
+  public static boolean intakeToggle = true;
 
   public IntakeFeeder() {
     rightIntakeMotor.setInverted(true);
@@ -38,9 +47,9 @@ public class IntakeFeeder extends SubsystemBase {
 
   public void intake() {
     if (intakeToggle == true) {
-      rightIntakeMotor.set(Constants.DriveConstants.intakeSpeed);
-      feeder.set(Constants.DriveConstants.feederSpeed);
-      treadmill.set(Constants.DriveConstants.treadmillSpeed);
+      rightIntakeMotor.set(intakeSpeed);
+      feeder.set(feederSpeed);
+      treadmill.set(treadmillSpeed);
     } else {
       intakeOff();
     }
@@ -52,16 +61,16 @@ public class IntakeFeeder extends SubsystemBase {
     treadmill.set(0);
   }
 
-  public void plantIntake(double speed) {
-    rightIntakeMotor.set(speed);
+  public void plantIntake() {
+    rightIntakeMotor.set(plantSpeed);
     feeder.set(0);
     treadmill.set(0);
   }
 
   public void regurgitate() {
-    rightIntakeMotor.set(Constants.DriveConstants.intakeRegurgitateSpeed);
-    feeder.set(Constants.DriveConstants.feederRegurgitateSpeed);
-    treadmill.set(Constants.DriveConstants.treadmillRegurgitateSpeed);
+    rightIntakeMotor.set(intakeRegSpeed);
+    feeder.set(feederRegSpeed);
+    treadmill.set(treadmillRegSpeed);
   }
 
   @Override

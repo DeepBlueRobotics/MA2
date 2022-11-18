@@ -13,16 +13,12 @@ import frc.robot.subsystems.IntakeFeeder;
 public class PickupPlant extends CommandBase {
   /** Creates a new DriveSlow. */
   private final Drivetrain dt;
-  private final Joystick leftJoy;
-  private final Joystick rightJoy;
   private final IntakeFeeder intake;
 
-  public PickupPlant(IntakeFeeder intake, Drivetrain dt, Joystick leftJoy, Joystick rightJoy) {
+  public PickupPlant(IntakeFeeder intake, Drivetrain dt) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(dt, intake);
     this.dt = dt;
-    this.leftJoy = leftJoy;
-    this.rightJoy = rightJoy;
     this.intake = intake;
   }
   // Called when the command is initially scheduled.
@@ -32,13 +28,8 @@ public class PickupPlant extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Constants.DriveConstants.mode == Constants.DriveConstants.DriveMode.TANK) {
-      dt.tankDrive(leftJoy.getX() * Constants.DriveConstants.slowDriveMultiplier, rightJoy.getX() * Constants.DriveConstants.slowDriveMultiplier);
-    } else {
-      dt.arcadeDrive(leftJoy.getX() * Constants.DriveConstants.slowDriveMultiplier, rightJoy.getX() * Constants.DriveConstants.slowDriveMultiplier);
-    }
-
-    intake.plantIntake(Constants.DriveConstants.plantIntakeSpeed);
+    dt.plantDrive();
+    intake.plantIntake();
   }
 
   // Called once the command ends or is interrupted.
