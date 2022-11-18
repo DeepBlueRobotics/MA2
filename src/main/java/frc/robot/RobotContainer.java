@@ -69,7 +69,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new Autonomous(dt, 55);
+    return new Autonomous(dt);
   }
 
   /**

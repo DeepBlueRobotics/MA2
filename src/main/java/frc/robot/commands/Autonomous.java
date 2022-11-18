@@ -11,8 +11,9 @@ import frc.robot.subsystems.Drivetrain;
 public class Autonomous extends CommandBase {
   /** Creates a new Autonomous. */
   private final Drivetrain dt;
+  private final double distanceInches = 55;
   private final double rotationsNeeded;
-  public Autonomous(Drivetrain dt, double distanceInches) {
+  public Autonomous(Drivetrain dt) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(this.dt = dt);
     rotationsNeeded = distanceInches / (Constants.DriveConstants.drivetrainRatio * (Constants.DriveConstants.wheelDiameter * Math.PI));
