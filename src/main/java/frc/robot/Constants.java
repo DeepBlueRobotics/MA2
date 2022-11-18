@@ -64,7 +64,7 @@ public final class Constants {
         public static final int toggleMode = 0;
         public static final int plantIntake = 0;
         public static final int regurgitate = 0;
-        // public static final int intakeToggle = 0;
+        public static final int intakeToggle = 0;
     
         /** public static int X;
         public static int A;
