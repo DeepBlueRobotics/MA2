@@ -11,9 +11,10 @@ import frc.robot.Constants;
 public class Intake extends CommandBase {
   /** Creates a new Intake. */
   private final IntakeFeeder intake;
+   
   public Intake(IntakeFeeder intake) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.intake = intake;
+    addRequirements(this.intake = intake);
   }
 
   // Called when the command is initially scheduled.
