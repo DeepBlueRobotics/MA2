@@ -14,8 +14,7 @@ import frc.robot.Constants;
 
 public class IntakeFeeder extends SubsystemBase {
   /** Creates a new Intake. */
-  private final CANSparkMax leftIntakeMotor = MotorControllerFactory.createSparkMax(Constants.MotorPorts.leftIntakeSparkMax, Constants.DriveConstants.motorTempLimit);
-  private final CANSparkMax rightIntakeMotor = MotorControllerFactory.createSparkMax(Constants.MotorPorts.rightIntakeSparkMax, Constants.DriveConstants.motorTempLimit);
+  private final CANSparkMax intakeMotor = MotorControllerFactory.createSparkMax(Constants.MotorPorts.rightIntakeSparkMax, Constants.DriveConstants.motorTempLimit);
   private final CANSparkMax feeder = MotorControllerFactory.createSparkMax(Constants.MotorPorts.feederSparkMax, Constants.DriveConstants.motorTempLimit);
   private final CANSparkMax treadmill = MotorControllerFactory.createSparkMax(Constants.MotorPorts.treadmill, Constants.DriveConstants.motorTempLimit);
   
@@ -32,9 +31,7 @@ public class IntakeFeeder extends SubsystemBase {
   public static boolean intakeToggle = true;
 
   public IntakeFeeder() {
-    rightIntakeMotor.setInverted(true);
-    rightIntakeMotor.follow(leftIntakeMotor);
-
+    // intakeMotor.setInverted(true);
   }
 
   public void onOff() {
@@ -47,7 +44,7 @@ public class IntakeFeeder extends SubsystemBase {
 
   public void intake() {
     if (intakeToggle == true) {
-      rightIntakeMotor.set(intakeSpeed);
+      intakeMotor.set(intakeSpeed);
       feeder.set(feederSpeed);
       treadmill.set(treadmillSpeed);
     } else {
@@ -56,19 +53,19 @@ public class IntakeFeeder extends SubsystemBase {
   }
 
   public void intakeOff() {
-    rightIntakeMotor.set(0);
+    intakeMotor.set(0);
     feeder.set(0);
     treadmill.set(0);
   }
 
   public void plantIntake() {
-    rightIntakeMotor.set(plantSpeed);
+    intakeMotor.set(plantSpeed);
     feeder.set(0);
     treadmill.set(0);
   }
 
   public void regurgitate() {
-    rightIntakeMotor.set(intakeRegSpeed);
+    intakeMotor.set(intakeRegSpeed);
     feeder.set(feederRegSpeed);
     treadmill.set(treadmillRegSpeed);
   }
@@ -76,8 +73,7 @@ public class IntakeFeeder extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Left Intake RPM", leftIntakeMotor.getEncoder().getVelocity());
-    SmartDashboard.putNumber("Right Intake RPM", rightIntakeMotor.getEncoder().getVelocity());
+    SmartDashboard.putNumber("Intake RPM", intakeMotor.getEncoder().getVelocity());
     SmartDashboard.putNumber("Feeder RPM", feeder.getEncoder().getVelocity());
     SmartDashboard.putNumber("Treadmill RPM", treadmill.getEncoder().getVelocity());
   }
