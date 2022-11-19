@@ -27,7 +27,7 @@ public class Drivetrain extends SubsystemBase {
   private final double plantModifier = 0.3;
   private final double autoSpeed = 0.5;
   
-  private boolean isTank = true;
+  private boolean isTank = false;
 
   public Drivetrain(Joystick leftJoy, Joystick rightJoy) {
     right.setInverted(true);

@@ -23,14 +23,14 @@ public final class Constants {
 
         public static final class LeftJoy {
             public static final int port = 0;
-            public static final int toggleMode = 0;
-            public static final int plantIntake = 0;
+            public static final int toggleMode = 2;
+            public static final int plantIntake = 1;
         }
         
         public static final class RightJoy {
-            public static final int port = 0;
-            public static final int regurgitate = 0;
-            public static final int intakeToggle = 0;
+            public static final int port = 1;
+            public static final int regurgitate = 1;
+            public static final int intakeToggle = 2;
         }
     }
     public static final class DriveConstants {
@@ -48,10 +48,9 @@ public final class Constants {
     }
 
     public static final class MotorPorts {
-        public static final int leftDriveSparkMax = 0;
-        public static final int rightDriveSparkMax = 0;
-        public static final int leftIntakeSparkMax = 0;
-        public static final int rightIntakeSparkMax = 0;
+        public static final int leftDriveSparkMax = 11;
+        public static final int rightDriveSparkMax = 17;
+        public static final int intakeSparkMax = 0;
         public static final int feederSparkMax = 0;
         public static final int treadmill = 0;
     }

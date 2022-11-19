@@ -44,6 +44,5 @@ public class Autonomous extends CommandBase {
   @Override
   public boolean isFinished() {
     return dt.getRotations() >= rotationsNeeded;
-
   }
 }

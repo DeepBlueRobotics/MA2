@@ -40,10 +40,8 @@ public class RobotContainer {
     configureButtonBindingsRightJoy();
     configureButtonBindingsController();
 
-    dt.setDefaultCommand(new TeleopDrive(dt, leftJoy, rightJoy));
+    dt.setDefaultCommand(new TeleopDrive(dt));
     intake.setDefaultCommand(new Intake(intake));
-    // CommandScheduler.getInstance().schedule(new Intake(intake));
-
   }
 
   /**
@@ -61,7 +59,7 @@ public class RobotContainer {
     new JoystickButton(rightJoy, Constants.OI.RightJoy.intakeToggle).whenPressed(new InstantCommand(intake::onOff));
   }
 
-  private void configureButtonBindingsController() { // Idk what the problem is here.
+  private void configureButtonBindingsController() {
     new JoystickButton(controller, Constants.Controller.toggleMode).whenPressed(new InstantCommand(dt::switchMode));
     new JoystickButton(controller, Constants.Controller.plantIntake).whileHeld(new PickupPlant(intake, dt));
     new JoystickButton(controller, Constants.Controller.regurgitate).whileHeld(new InstantCommand(intake::regurgitate));

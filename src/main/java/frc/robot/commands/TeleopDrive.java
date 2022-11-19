@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 
@@ -13,7 +12,7 @@ public class TeleopDrive extends CommandBase {
 
   private final Drivetrain dt;
 
-  public TeleopDrive(Drivetrain drivetrain, Joystick left, Joystick right) {
+  public TeleopDrive(Drivetrain drivetrain) {
     addRequirements(dt = drivetrain);
   }
 

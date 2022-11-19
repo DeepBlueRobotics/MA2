@@ -14,7 +14,7 @@ import frc.robot.Constants;
 
 public class IntakeFeeder extends SubsystemBase {
   /** Creates a new Intake. */
-  private final CANSparkMax intakeMotor = MotorControllerFactory.createSparkMax(Constants.MotorPorts.rightIntakeSparkMax, Constants.DriveConstants.motorTempLimit);
+  private final CANSparkMax intakeMotor = MotorControllerFactory.createSparkMax(Constants.MotorPorts.intakeSparkMax, Constants.DriveConstants.motorTempLimit);
   private final CANSparkMax feeder = MotorControllerFactory.createSparkMax(Constants.MotorPorts.feederSparkMax, Constants.DriveConstants.motorTempLimit);
   private final CANSparkMax treadmill = MotorControllerFactory.createSparkMax(Constants.MotorPorts.treadmill, Constants.DriveConstants.motorTempLimit);
   
