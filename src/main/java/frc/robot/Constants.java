@@ -15,36 +15,24 @@ package frc.robot;
 public final class Constants {
 
     public static final class OI {
-        public static enum ControlType {JOYSTICKS, GAMEPAD};
-        public static enum StickType {LEFT, RIGHT};
-        public static enum StickDirection {X, Y};
-
-        public static ControlType CONTROL_TYPE = ControlType.JOYSTICKS;
-
         public static final class LeftJoy {
             public static final int port = 0;
+
             public static final int toggleMode = 2;
-            public static final int plantIntake = 1;
+            public static final int plantIntake = 1; // trigger
         }
         
         public static final class RightJoy {
             public static final int port = 1;
+
             public static final int regurgitate = 1;
-            public static final int intakeToggle = 2;
+            public static final int intakeToggle = 2; // trigger
         }
     }
-    public static final class DriveConstants {
 
+    public static final class DriveConstants {
         public static final double drivetrainRatio = 12/72;
         public static final double wheelDiameter = 4;
-
-        public static final int motorTempLimit = 30;
-        
-        public static final double autoSpeed = 0.4;
-
-        public static final double slowDriveMultiplier = 0.3;
-
-        public static final double plantIntakeSpeed = 0.1;
     }
 
     public static final class MotorPorts {
@@ -57,8 +45,6 @@ public final class Constants {
 
     public static final class Controller {
         public static final int port = 0;
-    
-        // public static Joystick controller = new Joystick(port);
 
         public static final int toggleMode = 0;
         public static final int plantIntake = 0;
@@ -89,8 +75,8 @@ public final class Constants {
                 BACK = 9;
                 START = 10;
             }
-              public static final int toggleMode = Y; // TODO: set correct port
-              public static final int runIntakeBackwardPort = A; // TODO: set correct port
+              public static final int toggleMode = Y;
+              public static final int runIntakeBackwardPort = A;
               public static final int regurgitatePort = B;
               public static final int dumbModeToggle = START;
               public static final int toggleIntakePort = X;

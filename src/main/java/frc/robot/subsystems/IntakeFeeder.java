@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 
 import org.carlmontrobotics.lib199.MotorControllerFactory;
+import org.carlmontrobotics.lib199.MotorErrors.TemperatureLimit;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,9 +15,9 @@ import frc.robot.Constants;
 
 public class IntakeFeeder extends SubsystemBase {
   /** Creates a new Intake. */
-  private final CANSparkMax intakeMotor = MotorControllerFactory.createSparkMax(Constants.MotorPorts.intakeSparkMax, Constants.DriveConstants.motorTempLimit);
-  private final CANSparkMax feeder = MotorControllerFactory.createSparkMax(Constants.MotorPorts.feederSparkMax, Constants.DriveConstants.motorTempLimit);
-  private final CANSparkMax treadmill = MotorControllerFactory.createSparkMax(Constants.MotorPorts.treadmill, Constants.DriveConstants.motorTempLimit);
+  private final CANSparkMax intakeMotor = MotorControllerFactory.createSparkMax(Constants.MotorPorts.intakeSparkMax, TemperatureLimit.NEO);
+  private final CANSparkMax feeder = MotorControllerFactory.createSparkMax(Constants.MotorPorts.feederSparkMax, TemperatureLimit.NEO_550);
+  private final CANSparkMax treadmill = MotorControllerFactory.createSparkMax(Constants.MotorPorts.treadmill, TemperatureLimit.NEO_550);
   
   public final double intakeSpeed = 0.8;
   public final double feederSpeed = 0.6;

@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 
 import org.carlmontrobotics.lib199.MotorControllerFactory;
+import org.carlmontrobotics.lib199.MotorErrors.TemperatureLimit;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -16,8 +17,8 @@ import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
-  private final CANSparkMax left = MotorControllerFactory.createSparkMax(Constants.MotorPorts.leftDriveSparkMax, Constants.DriveConstants.motorTempLimit);
-  private final CANSparkMax right = MotorControllerFactory.createSparkMax(Constants.MotorPorts.rightDriveSparkMax, Constants.DriveConstants.motorTempLimit);
+  private final CANSparkMax left = MotorControllerFactory.createSparkMax(Constants.MotorPorts.leftDriveSparkMax, TemperatureLimit.NEO);
+  private final CANSparkMax right = MotorControllerFactory.createSparkMax(Constants.MotorPorts.rightDriveSparkMax, TemperatureLimit.NEO);
   
   private final DifferentialDrive drive;
   
