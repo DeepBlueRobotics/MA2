@@ -26,7 +26,7 @@ public class Drivetrain extends SubsystemBase {
   private final Joystick rightJoy;
   
   private final double plantModifier = 0.3;
-  private final double autoSpeed = 0.5;
+  private final double autoSpeed = 0.3;
   
   private boolean isTank = false;
 
@@ -41,12 +41,17 @@ public class Drivetrain extends SubsystemBase {
     if (isTank == true) {
       drive.tankDrive(leftJoy.getY(), rightJoy.getY());
     } else {
-      drive.arcadeDrive(leftJoy.getY(), rightJoy.getX());
+      drive.arcadeDrive(leftJoy.getY(), -rightJoy.getX());
     }
   }
 
   public void autoDrive() {
-    drive.tankDrive(autoSpeed, autoSpeed);
+    drive.tankDrive(-autoSpeed, -autoSpeed);
+  }
+
+  public void reset() {
+    left.getEncoder().setPosition(0);
+    right.getEncoder().setPosition(0);
   }
 
 public void plantDrive() {

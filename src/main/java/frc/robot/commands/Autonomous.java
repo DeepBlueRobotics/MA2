@@ -16,22 +16,21 @@ public class Autonomous extends CommandBase {
   public Autonomous(Drivetrain dt) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(this.dt = dt);
-    rotationsNeeded = distanceInches / (Constants.DriveConstants.drivetrainRatio * (Constants.DriveConstants.wheelDiameter * Math.PI));
+    rotationsNeeded = -distanceInches / (Constants.DriveConstants.drivetrainRatio * (Constants.DriveConstants.wheelDiameter * Math.PI));
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    dt.reset();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    if (dt.getRotations() < rotationsNeeded) {
+    if (dt.getRotations() >= rotationsNeeded) {
       dt.autoDrive();
-    } /*else {
-      dt.stop();
-    }*/
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -43,6 +42,6 @@ public class Autonomous extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return dt.getRotations() >= rotationsNeeded;
+    return dt.getRotations() < rotationsNeeded;
   }
 }

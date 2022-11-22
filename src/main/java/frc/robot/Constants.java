@@ -31,25 +31,25 @@ public final class Constants {
     }
 
     public static final class DriveConstants {
-        public static final double drivetrainRatio = 12/72;
+        public static final double drivetrainRatio = 12.0/72;
         public static final double wheelDiameter = 4;
     }
 
     public static final class MotorPorts {
-        public static final int leftDriveSparkMax = 11;
-        public static final int rightDriveSparkMax = 17;
+        public static final int leftDriveSparkMax = 6;
+        public static final int rightDriveSparkMax = 7;
         public static final int intakeSparkMax = 0;
         public static final int feederSparkMax = 0;
         public static final int treadmill = 0;
     }
 
     public static final class Controller {
-        public static final int port = 0;
+        public static final int port = 2;
 
-        public static final int toggleMode = 0;
-        public static final int plantIntake = 0;
-        public static final int regurgitate = 0;
-        public static final int intakeToggle = 0;
+        public static final int toggleMode = 1;
+        public static final int plantIntake = 2;
+        public static final int regurgitate = 3;
+        public static final int intakeToggle = 4;
     
         /** public static int X;
         public static int A;
