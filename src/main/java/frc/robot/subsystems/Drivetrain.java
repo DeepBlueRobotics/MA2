@@ -38,7 +38,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void drive() {
-    if (isTank == true) {
+    if (isTank) {
       drive.tankDrive(leftJoy.getY(), rightJoy.getY());
     } else {
       drive.arcadeDrive(leftJoy.getY(), -rightJoy.getX());

@@ -19,7 +19,7 @@ public class IntakeFeeder extends SubsystemBase {
   private final CANSparkMax feeder = MotorControllerFactory.createSparkMax(Constants.MotorPorts.feederSparkMax, TemperatureLimit.NEO_550);
   private final CANSparkMax treadmill = MotorControllerFactory.createSparkMax(Constants.MotorPorts.treadmill, TemperatureLimit.NEO_550);
   
-  public final double intakeSpeed = 0.1;
+  public final double intakeSpeed = 0.2;
   public final double feederSpeed = 0.3;
   public final double treadmillSpeed = 0.3;
 
@@ -27,7 +27,7 @@ public class IntakeFeeder extends SubsystemBase {
   public final double feederRegSpeed = -0.1;
   public final double treadmillRegSpeed = -0.1;
 
-  public final double plantSpeed = 0.05;
+  public final double plantSpeed = 0.01;
 
   public static boolean intakeToggle = true;
 
