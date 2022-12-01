@@ -38,9 +38,9 @@ public final class Constants {
     public static final class MotorPorts {
         public static final int leftDriveSparkMax = 6;
         public static final int rightDriveSparkMax = 7;
-        public static final int intakeSparkMax = 0;
-        public static final int feederSparkMax = 0;
-        public static final int treadmill = 0;
+        public static final int intakeSparkMax = 5;
+        public static final int feederSparkMax = 14;
+        public static final int treadmill = 4;
     }
 
     public static final class Controller {
