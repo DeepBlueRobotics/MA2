@@ -58,7 +58,15 @@ public void plantDrive() {
   if (isTank == true) {
     drive.tankDrive(leftJoy.getY() * plantModifier, rightJoy.getY() * plantModifier);
   } else {
-    drive.arcadeDrive(leftJoy.getY() * plantModifier, rightJoy.getX() * plantModifier);
+    drive.arcadeDrive(-leftJoy.getY() * plantModifier, -rightJoy.getX() * plantModifier);
+  }
+}
+
+public void driveBackSlow() {
+  if (isTank == true) {
+    drive.tankDrive(-leftJoy.getY() * plantModifier, -rightJoy.getY() * plantModifier);
+  } else {
+    drive.arcadeDrive(-leftJoy.getY() * plantModifier, rightJoy.getX() * plantModifier);
   }
 }
 

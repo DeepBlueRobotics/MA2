@@ -20,13 +20,14 @@ public final class Constants {
 
             public static final int toggleMode = 2;
             public static final int plantIntake = 1; // trigger
+            public static final int PlantRegurgitate = 3;
         }
         
         public static final class RightJoy {
             public static final int port = 1;
 
             public static final int regurgitate = 1;
-            public static final int intakeToggle = 2; // trigger
+            public static final int intakeToggle = 0; // 2 trigger
         }
     }
 
@@ -36,8 +37,8 @@ public final class Constants {
     }
 
     public static final class MotorPorts {
-        public static final int leftDriveSparkMax = 6;
-        public static final int rightDriveSparkMax = 7;
+        public static final int leftDriveSparkMax = 6; // 6
+        public static final int rightDriveSparkMax = 7; // 7
         public static final int intakeSparkMax = 5;
         public static final int feederSparkMax = 14;
         public static final int treadmill = 4;

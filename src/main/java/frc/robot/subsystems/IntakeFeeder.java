@@ -25,9 +25,9 @@ public class IntakeFeeder extends SubsystemBase {
 
   public final double intakeRegSpeed = -0.1;
   public final double feederRegSpeed = -0.1;
-  public final double treadmillRegSpeed = -0.1;
+  public final double treadmillRegSpeed = -0.3;
 
-  public final double plantSpeed = 0.01;
+  public final double plantSpeed = 0.05;
 
   public static boolean intakeToggle = true;
 
@@ -61,6 +61,12 @@ public class IntakeFeeder extends SubsystemBase {
 
   public void plantIntake() {
     intakeMotor.set(plantSpeed);
+    feeder.set(0);
+    treadmill.set(0);
+  }
+
+  public void regurgitatePlant() {
+    intakeMotor.set(-plantSpeed);
     feeder.set(0);
     treadmill.set(0);
   }

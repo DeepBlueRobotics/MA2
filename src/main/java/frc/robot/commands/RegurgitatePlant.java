@@ -5,43 +5,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.IntakeFeeder;
 
-public class Autonomous extends CommandBase {
-  /** Creates a new Autonomous. */
-  private final Drivetrain dt;
-  private final double distanceInches = 62;
-  private final double rotationsNeeded;
-  public Autonomous(Drivetrain dt) {
+public class RegurgitatePlant extends CommandBase {
+  /** Creates a new RegurgitatePlant. */
+  IntakeFeeder intake;
+  Drivetrain dt;
+  public RegurgitatePlant(IntakeFeeder intake, Drivetrain dt) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(this.dt = dt);
-    rotationsNeeded = -distanceInches / (Constants.DriveConstants.drivetrainRatio * (Constants.DriveConstants.wheelDiameter * Math.PI));
+    addRequirements(this.intake = intake);
+    this.dt = dt;
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    dt.reset();
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (dt.getRotations() >= rotationsNeeded) {
-      dt.autoDrive();
-    }
+    intake.regurgitatePlant();
+    dt.driveBackSlow();
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    // dt.stop(); // maybe 
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return dt.getRotations() < rotationsNeeded;
+    return false;
   }
 }
